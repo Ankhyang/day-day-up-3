@@ -2,12 +2,17 @@ const path = require('path')
 const webpack = require('webpack')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin //引入webpack-bundle-analyzer
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
+
+function resolve(dir){
+    return path.join(__dirname,dir)//path.join(__dirname)设置绝对路径
+}
+
 module.exports = {
     publicPath: process.env.NODE_ENV === 'production' ? '/production-sub-path/' : '/', // 部署应用包时的基本URL
     outputDir: 'dist', // 打包时生成的生产环境构建稳健的目录
     assetsDir: 'static', // 放置生成的静态资源的目录
     filenameHashing: true,
-    lintOnSave: true, // eslint-loader会将lint错误输出为编译警告
+    lintOnSave: false, // eslint-loader会将lint错误输出为编译警告
     productionSourceMap: false, // 如果你不需要生产环境的source map，可以将其设置为false，以加速生产环境的构建
     configureWebpack: {
       // 简单/基础配置，比如引入一个新插件
@@ -17,21 +22,13 @@ module.exports = {
       // 链式配置
     //   config.plugin('ignore')
     //     .use(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)); //忽略/moment/locale下的所有文件
-      config.plugin('analyzer')  
-        .use(new BundleAnalyzerPlugin())//使用webpack-bundle-analyzer 生成报表
-      config.plugin("loadshReplace")
-        .use(new LodashModuleReplacementPlugin());//优化lodash
-    },
-    css: {
-      // css预设器配置项
-      loaderOptions: {
-        css: {
-   
-        },
-        postcss: {
-   
-        }
-      }
+    //   config.plugin('analyzer')  
+    //     .use(new BundleAnalyzerPlugin())//使用webpack-bundle-analyzer 生成报表
+    //   config.plugin("loadshReplace")
+    //     .use(new LodashModuleReplacementPlugin());//优化lodash
+        config.resolve.alias
+        .set('@',resolve('./src')) // set第一个参数：设置的别名，第二个参数：设置的路径
+        .set('layout',resolve('./src/layout'))
     },
     devServer: {
       open: true,
