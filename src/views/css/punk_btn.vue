@@ -1,25 +1,23 @@
-<script type="text/jsx">
+
+<template>
+    <div class='wrapper'>
+        <button>AVAILABLE NOW</button>
+    </div>
+</template>
+
+<script>
 // 实现赛博朋克故障风按钮
 export default {
-    name: 'punk_btn',
-    data(){
-
-    },
-    render() {
-        return (
-            <div class='wrapper'>
-                <button>AVAILABLE NOW</button>
-            </div>
-        )
-    }
+    name: 'punk_btn'
 }
 </script>
-
 <style lang="less" scoped>
     .wrapper{
         width: 100%;
         height: 100%;
-        background-color: #f8f500;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         button, button::after{
             width: 380px;
             height: 86px;

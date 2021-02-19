@@ -1,27 +1,28 @@
-<script type="text/jsx">
+<template>
+    <div class="wrapper">
+        <h1 :style="{'background-position-x': time + '%'}">Less Bezel, more screen</h1>
+    </div>
+</template>
+<script>
+import { reactive, toRefs, onMounted, onBeforeMount } from 'vue'
 // 实现文字缓慢渐入显示特效
 export default {
     name: 'text_slide_in',
-    data(){
-        return {
+    setup(){
+        const state = reactive({
             time: 100
+        })
+        onBeforeMount(() => {
+            let id = setInterval(() => {
+                state.time -= 10
+                if(state.time === 0) {
+                    clearInterval(id)
+                }
+            }, 100)
+        })
+        return {
+            ...toRefs(state)
         }
-    },
-    created() {
-        let id = setInterval(() => {
-            this.time -= 10
-            if(this.time === 0) {
-                clearInterval(id)
-            }
-        }, 100)
-    },
-    render() {
-        let { time } = this
-        return (
-            <div class="wrapper">
-                <h1 style={{'background-position-x': time + '%'}}>Less Bezel, more screen</h1>
-            </div>
-        )
     }
 }
 </script>
@@ -30,7 +31,9 @@ export default {
     .wrapper{
         width: 100%;
         height: 100%;
-        background-color: #c6ebc9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         h1{
             font-size: 48px;
             font-family: Helvetica;

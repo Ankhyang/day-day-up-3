@@ -1,34 +1,32 @@
-<script type="text/jsx">
-    export default{
-        name: 'skeleton',
-        render() {
-            return(
-                <div class="body">
-                    <div class="card">
-                        <div class="image">
-                            <img src="https://assets.codepen.io/2002878/wake-up-and-code.jpg" alt=""/>
-                        </div>
-                        <div class="content">
-                            <h4>CodingStartup</h4>
-                            <div class="description">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quasi enim facere commodi omnis...
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card loading">
-                        <div class="image">
-                            
-                        </div>
-                        <div class="content">
-                            <h4></h4>
-                            <div class="description">
-                            
-                            </div>
-                        </div>
-                    </div>
+<template>
+    <div class="body">
+        <div class="card">
+            <div class="image">
+                <img src="https://assets.codepen.io/2002878/wake-up-and-code.jpg" alt=""/>
+            </div>
+            <div class="content">
+                <h4>CodingStartup</h4>
+                <div class="description">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex quasi enim facere commodi omnis...
                 </div>
-            )
-        }
+            </div>
+        </div>
+        <div class="card loading">
+            <div class="image">
+                
+            </div>
+            <div class="content">
+                <h4></h4>
+                <div class="description">
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    export default{
+        name: 'skeleton'
     }
 </script>
 
@@ -51,6 +49,7 @@
   border-radius: 6px;
   overflow: hidden;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, .12);
+  margin-right: 20px;
 }
 
 .image {
