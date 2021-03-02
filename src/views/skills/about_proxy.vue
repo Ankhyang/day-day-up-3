@@ -216,6 +216,17 @@ export default {
         revoke();
         // console.log(p2.name); // Uncaught TypeError: Cannot perform 'get' on a proxy that has been revoked at <anonymous>
 
+        let obj11 = { name: 'Kobe', address:{x:100,y:100}}
+        let obj13 = { name: 'Kobe', address: 'hehe'}
+        let obj22= {... obj11}
+        obj11.address.x = 200;
+        obj11.name = 'Kobe'
+
+        let obj23 = {... obj13}
+        obj13.name = 'Kobe3'
+        console.log('obj22',obj22, obj23) 
+// obj22 { name: 'wade', address: { x: 200, y: 100 } }
+
         return {
             ...toRefs(state),
             newObj,

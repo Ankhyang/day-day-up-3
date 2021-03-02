@@ -1,10 +1,14 @@
-<script type="text/jsx">
-// 利用伪类的content结合attr展示内容
-
+<template>
+    <ul class="hover-tips">
+        <li :data-name="key" :style="{'backgroundColor': item}" v-for="(item, key, index) in colors" :key="index"></li>
+    </ul>
+</template>
+<script>
+import { reactive, toRefs } from 'vue'
 export default {
     name: 'contentAttr',
-    data() {
-        return {
+    setup(){
+        const state = reactive({
             colors: {
                 '姨妈红': '#f66',
                 '基佬紫': '#66f',
@@ -13,33 +17,19 @@ export default {
                 '大粪青': '#9c3',
                 '原谅绿': '#3c9'
             }
+        })
+        return{
+            ...toRefs(state)
         }
-    },
-    methods: {
-        renderEle() {
-            return (
-                Object.keys(this.colors).map(item => {
-                    let value = this.colors[item]
-                    return <li data-name={item} style={{'backgroundColor': value}}></li>
-                })
-            )
-        }
-    },
-    render() {
-        return (
-            <ul class="hover-tips">
-                {this.renderEle()}
-            </ul>
-        )
-    }    
+    }
 }
 </script>
-
 <style lang="less" scoped>
 .hover-tips {
     display: flex;
     justify-content: space-between;
     width: 200px;
+    list-style: none;
     li {
         position: relative;
         padding: 2px;

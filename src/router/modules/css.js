@@ -31,6 +31,12 @@ const obj = {
         component: () => import('@/views/css/text_slide_in.vue')
     },
     {
+        path: '/css_transition',
+        name: 'css_transition',
+        title: 'transition过渡使用',
+        component: () => import('@/views/css/css_transition.vue')
+    },
+    {
         path: '/punk_btn',
         name: 'punk_btn',
         title: '赛博朋克故障风按钮',
