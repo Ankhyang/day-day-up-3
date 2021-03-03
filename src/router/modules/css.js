@@ -37,6 +37,12 @@ const obj = {
         component: () => import('@/views/css/css_transition.vue')
     },
     {
+        path: '/magnifying_glass',
+        name: 'magnifying_glass',
+        title: '放大镜效果',
+        component: () => import('@/views/css/magnifying_glass.vue')
+    },
+    {
         path: '/punk_btn',
         name: 'punk_btn',
         title: '赛博朋克故障风按钮',
