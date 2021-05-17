@@ -8,15 +8,22 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "ant-design-vue": "^2.0.0",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "crypto-js": "^4.0.0",
+    "element-plus": "^1.0.2-beta.35",
     "less-loader": "^5.0.0",
-    "lodash": "^4.17.20",
-    "vue": "^3.0.0",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
+    "nprogress": "^0.2.0",
+    "vue": "^3.0.11",
+    "vue-i18n": "^9.1.6",
+    "vue-image-crop-upload": "^2.5.0",
     "vue-router": "^4.0.3",
-    "vuex": "^3.6.2"
+    "vue3-count-to": "^1.0.7",
+    "vuex": "^4.0.0",
+    "vuex-module-decorators": "^1.0.1",
+    "vuex-persistedstate": "^4.0.0-beta.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -33,6 +40,8 @@
     "eslint-plugin-vue": "^7.0.0-0",
     "less": "^4.1.1",
     "lodash-webpack-plugin": "^0.11.6",
+    "ts-loader": "^9.1.2",
+    "typescript": "^4.2.4",
     "webpack-bundle-analyzer": "^4.4.0"
   }
 }

@@ -23,7 +23,6 @@ npm run build
     * common-----公共样式与方法
         * js-----公共方法
         * style-----公共样式
-            * base.less-----全局样式表
     * components-----全局公用组件
     * httpServer-----API 请求相关
     * layout-----页面layout容器
