@@ -1,83 +1,143 @@
+<!--
+ * @Description: app布局入口
+ * @Author: yangzai
+ * @Date: 2021-05-17 09:55:26
+ * @LastEditTime: 2021-05-18 17:59:30
+ * @LastEditors: yangzai
+-->
 <template>
-    <a-layout>
-        <a-layout-header>我是头部内容 —— 创意字体展示</a-layout-header>
-        <a-layout>
-            <a-layout-sider theme="light">
-               <a-menu mode="inline" v-model="current">
-                    <a-sub-menu :title="item.title" :selectable="false" v-for="(item, index) in menu" :key="index"> 
-                        <a-menu-item :key="s.path" v-for="s in item.children" @click="changeSidebar">{{s.title}}</a-menu-item>
-                    </a-sub-menu>
-                </a-menu>
-            </a-layout-sider>
-            <a-layout-content class="content">
-                <router-view></router-view>
-            </a-layout-content>
-        </a-layout>
-        <a-layout-footer>底部版权所有</a-layout-footer>
-    </a-layout>
+    
 </template>
-<script>
-import {useRouter} from 'vue-router'
-import menu from '@/utils/commonData'
-import {reactive, toRefs} from 'vue'
-export default {
-    name: 'index',
+<script lang="ts">
+import { defineComponent, computed, onBeforeMount, onBeforeUnmount, onMounted, reactive, toRefs } from 'vue'
+import { AppMain, NavBar, Settings, TagsView, SideBar } from './components'
+import { useI18n } from 'vue-i18n'
+import { useStore } from '@/store'
+
+export default defineComponent({
+    name: 'Layout',
+    components: {
+        AppMain,
+        NavBar,
+        SideBar,
+        Settings,
+        TagsView
+    },
     setup() {
-        const router = useRouter()
-        const state = reactive({
-            openKeys: ['sub1'],
-            current: ['mail'],
-            menu
-        })
-        const changeSidebar = data => {
-            state.current = data.keyPath[0]
-            router.replace({path: data.key})
-        }
-        return {
-            ...toRefs(state),
-            changeSidebar
-        }
-    }
-}
-</script><style lang="less" scoped>
-.ant-layout{
-    width: 100%;
+        // const { t } = useI18n()
+        // const store = useStore()
+        // const state = reactive({
+        //     handleClickOutside: () => {
+        //         // store.dispatch()
+        //     }
+        // })
+        // return {
+        //     t, 
+        //     ...toRefs(state)
+        // }
+    },
+})
+</script>
+<style lang="scss" scoped>
+.app-wrapper {
+    @include clearfix;
+    position: relative;
     height: 100%;
-    color: #000;
-    background: #fff;
-    text-align: center;
-    .ant-layout-header{
-        width: 100%;
-        height: 10%;
-        background: #e8ffff;
-        margin-bottom: 5px;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
+    width: 100%;
+}
+
+.drawer-bg {
+    background: #000;
+    opacity: 0.3;
+    width: 100%;
+    top: 0;
+    height: 100%;
+    position: absolute;
+    z-index: 999;
+}
+
+.main-container {
+    min-height: 100%;
+    transition: margin-left .28s;
+    margin-left: $sideBarWidth;
+    position: relative;
+}
+
+.sidebar-container {
+    transition: width 0.28s;
+    width: $sideBarWidth !important;
+    height: 100%;
+    position: fixed;
+    font-size: 0px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1001;
+    overflow: hidden;
+    background-color: #ffffff !important;
+}
+
+.fixed-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 9;
+    width: calc(100% - #{$sideBarWidth});
+    transition: width 0.28s;
+}
+
+.hideSidebar {
+    .main-container {
+        margin-left: 54px;
     }
-    .ant-layout-has-sider{
-        height: 80%;
-        .ant-layout-sider{
-            background: #bedcfa;
-            margin: 5px 5px 5px 0;
-            border-top-right-radius: 5px;
-            border-bottom-right-radius: 5px;
-        }
-        .ant-layout-content{
-            background: #f6f6f6;   
-            margin: 5px 0 5px 5px;
-            border-radius: 5px;    
-            display: flex;
-            align-items: center;
-            justify-content: center;     
-        }
+
+    .sidebar-container {
+        width: 54px !important;
     }
-    .ant-layout-footer{
-        height: 5%;
-        margin-top: 5px;
-        line-height: 100%;
-        background: #d0e8f2;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
+
+    .fixed-header {
+        width: calc(100% - 54px)
     }
 }
+
+/* for mobile response 适配移动端 */
+.mobile {
+    .main-container {
+        margin-left: 0px;
+    }
+
+    .sidebar-container {
+        transition: transform .28s;
+        width: $sideBarWidth !important;
+    }
+
+    &.openSidebar {
+        position: fixed;
+        top: 0;
+    }
+
+    &.hideSidebar {
+        .sidebar-container {
+        pointer-events: none;
+        transition-duration: 0.3s;
+        transform: translate3d(-$sideBarWidth, 0, 0);
+        }
+    }
+
+    .fixed-header {
+        width: 100%;
+    }
+}
+
+.withoutAnimation {
+    .main-container,
+    .sidebar-container {
+        transition: none;
+    }
+}
+
 </style>
+
+
+
+

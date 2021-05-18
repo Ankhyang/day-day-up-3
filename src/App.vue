@@ -1,38 +1,34 @@
+<!--
+ * @Description: 
+ * @Author: yangzai
+ * @Date: 2021-05-17 09:55:26
+ * @LastEditTime: 2021-05-18 15:56:30
+ * @LastEditors: yangzai
+-->
 <template>
-    <router-view class="router-view" v-slot="{Component}">
-        <transition>
-            <component :is="Component"/>   
-        </transition>
-    </router-view>
+    <router-view></router-view>
 </template>
+<script lang="ts">
+    import { defineComponent } from 'vue'
+    export default defineComponent({
 
-<script>
-
-export default {
-  name: 'App'
-}
+    })
 </script>
-
-<style>
-html, body {
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: scroll;
+<style lang='scss' scoped>
+.el-menu-item:hover{
+  outline: 0 !important;
+  color: #409EFF !important;
 }
-#app {
-  height: 100%;
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+.el-submenu__title:focus, .el-submenu__title:hover{
+  outline: 0 !important;
+  color: #fff !important;
+  background: #435EBE !important;
+  border-radius: 8px !important;
 }
-.router-view{
-    width: 100%;
-    height: auto;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin: 0 auto;
-    -webkit-overflow-scrolling: touch;
+.el-menu-item:hover{
+   outline: 0 !important;
+  color: #fff !important;
+  background: #435EBE !important;
+  border-radius: 8px !important;
 }
 </style>
