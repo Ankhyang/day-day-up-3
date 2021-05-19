@@ -2,11 +2,13 @@
  * @Description: app布局入口
  * @Author: yangzai
  * @Date: 2021-05-17 09:55:26
- * @LastEditTime: 2021-05-18 17:59:30
+ * @LastEditTime: 2021-05-19 09:27:41
  * @LastEditors: yangzai
 -->
 <template>
-    
+    <div class="app-wrapper">
+        <Sidebar class="sidebar-container" />
+    </div>
 </template>
 <script lang="ts">
 import { defineComponent, computed, onBeforeMount, onBeforeUnmount, onMounted, reactive, toRefs } from 'vue'
@@ -24,17 +26,17 @@ export default defineComponent({
         TagsView
     },
     setup() {
-        // const { t } = useI18n()
+        const { t } = useI18n()
         // const store = useStore()
         // const state = reactive({
         //     handleClickOutside: () => {
         //         // store.dispatch()
         //     }
         // })
-        // return {
-        //     t, 
-        //     ...toRefs(state)
-        // }
+        return {
+            t, 
+            // ...toRefs(state)
+        }
     },
 })
 </script>
