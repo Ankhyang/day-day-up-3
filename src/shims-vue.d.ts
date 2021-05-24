@@ -1,3 +1,10 @@
+/*
+ * @Description: 
+ * @Author: yangzai
+ * @Date: 2021-05-17 09:57:07
+ * @LastEditTime: 2021-05-21 15:22:11
+ * @LastEditors: yangzai
+ */
 /**
  * 为了 typescript 做的适配定义文件，因为.vue 文件不是一个常规的文件类型，ts 是不能理解 vue 文件是干嘛的，
     加这一段是是告诉 ts，vue 文件是这种类型的。

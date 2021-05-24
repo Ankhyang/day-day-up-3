@@ -1,51 +1,79 @@
+/*
+ * @Description: 
+ * @Author: yangzai
+ * @Date: 2021-05-17 09:55:26
+ * @LastEditTime: 2021-05-24 15:24:29
+ * @LastEditors: yangzai
+ */
+const { resolve } = require('path')
 const path = require('path')
-const webpack = require('webpack')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin //引入webpack-bundle-analyzer
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
+const webpackbar = require('webpackbar')
 
-function resolve(dir){
-    return path.join(__dirname,dir)//path.join(__dirname)设置绝对路径
-}
+const {
+    publicPath,
+    assetsDir,
+    outputDir,
+    lintOnSave,
+    transpileDependencies,
+    title,
+    devPort
+} = require('./src/config/default/vue.custom.config.js')
 
 module.exports = {
-    publicPath: process.env.NODE_ENV === 'production' ? '/production-sub-path/' : '/', // 部署应用包时的基本URL
-    outputDir: 'dist', // 打包时生成的生产环境构建稳健的目录
-    assetsDir: 'static', // 放置生成的静态资源的目录
-    filenameHashing: true,
-    lintOnSave: false, // eslint-loader会将lint错误输出为编译警告
-    productionSourceMap: false, // 如果你不需要生产环境的source map，可以将其设置为false，以加速生产环境的构建
-    configureWebpack: {
-      // 简单/基础配置，比如引入一个新插件
-      plugins: []
-    },
-    chainWebpack: config => {
-      // 链式配置
-    //   config.plugin('ignore')
-    //     .use(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)); //忽略/moment/locale下的所有文件
-    //   config.plugin('analyzer')  
-    //     .use(new BundleAnalyzerPlugin())//使用webpack-bundle-analyzer 生成报表
-    //   config.plugin("loadshReplace")
-    //     .use(new LodashModuleReplacementPlugin());//优化lodash
-        config.resolve.alias
-        .set('@',resolve('./src')) // set第一个参数：设置的别名，第二个参数：设置的路径
-        .set('layout',resolve('./src/layout'))
-    },
+    publicPath, // 部署应用包时的基本URL
+    outputDir, // 打包时生成的生产环境构建稳健的目录
+    assetsDir,
+    lintOnSave, 
     devServer: {
-      open: true,
-      host: '127.0.0.1',
-      port: 8080,
-      https: false,
-      hotOnly: false,
-      proxy: null,
-      // proxy: {
-      //     '/api': {
-      //         target: '<url>',
-      //         ws: true,
-      //         changOrigin: true
-      //     }
-      // },
-      before: app => {}
+        // 在 server 启动后打开浏览器。默认禁用
+        open: true,
+        hot: true,
+        host: '127.0.0.1',
+        port: devPort,
+        // 输出 cli 信息，默认启用
+        noInfo: false,
+        // 通过设置让浏览器 overlay 同时显示警告和错误
+        overlay: {
+            warnings: true,
+            errors: true
+        }
     },
     // 第三方插件配置
-    pluginOptions: {}
+    pluginOptions: {
+        // 配置全局scss变量
+        "style-resources-loader": {
+            preProcessor: 'scss',
+            patterns: [
+                path.resolve(__dirname, 'src/styles/_variables.scss'),
+                path.resolve(__dirname, 'src/styles/element-variables.scss')
+            ]
+        }
+    },
+    configureWebpack() {
+        return {
+            resolve: {
+                alias: {
+                    '@': resolve('src'),
+                    '*': resolve(''),
+                    'Assets': resolve('src/assets')
+                }
+            },
+            module: {
+                rules: [
+                    {
+                        test: /\.(json5?|ya?ml)$/, // target json, json5, yaml and yml files
+                        loader: '@intlify/vue-i18n-loader',
+                        include: [ // Use `Rule.include` to specify the files of locale messages to be pre-compiled
+                          path.resolve(__dirname, 'src/lang')
+                        ]
+                    },
+                ]
+            },
+            plugins: [
+                new webpackbar({
+                    name: title
+                })
+            ]
+        }
+    }
 }
