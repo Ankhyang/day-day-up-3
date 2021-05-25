@@ -1,3 +1,10 @@
+/*
+ * @Description: 
+ * @Author: yangzai
+ * @Date: 2021-05-17 09:55:26
+ * @LastEditTime: 2021-05-25 09:56:22
+ * @LastEditors: yangzai
+ */
 module.exports = {
     root: true,
     env: {
@@ -47,7 +54,8 @@ module.exports = {
         }
       ],
       'vue/attribute-hyphenation': 'off',
-      'vue/custom-event-name-casing': 'off'
+      'vue/custom-event-name-casing': 'off',
+      "indent": ["off", 2]
     },
     overrides: [
       {

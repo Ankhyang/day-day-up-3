@@ -2,13 +2,13 @@
  * @Description: 路由配置
  * @Author: yangzai
  * @Date: 2021-05-18 09:50:49
- * @LastEditTime: 2021-05-18 14:28:19
+ * @LastEditTime: 2021-05-25 09:53:39
  * @LastEditors: yangzai
  */
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import Lauyout from '@/layout/index.vue'
 
-const constantFiles = require.context('./constantMudules', true, /\.ts$/)
+const constantFiles = require.context('./constantModules', true, /\.ts$/)
 let constantModules: Array<RouteRecordRaw> = []
 constantFiles.keys().forEach(key => {
     if(key === './index.ts') return

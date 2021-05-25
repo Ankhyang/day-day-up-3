@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yangzai
  * @Date: 2021-05-17 09:55:26
- * @LastEditTime: 2021-05-24 15:24:29
+ * @LastEditTime: 2021-05-25 09:49:16
  * @LastEditors: yangzai
  */
 const { resolve } = require('path')
@@ -20,6 +20,12 @@ const {
 } = require('./src/config/default/vue.custom.config.js')
 
 module.exports = {
+    pages: {
+        index: {
+            // page 的入口\
+            entry: './src/main.ts'
+        }
+    },
     publicPath, // 部署应用包时的基本URL
     outputDir, // 打包时生成的生产环境构建稳健的目录
     assetsDir,
@@ -45,7 +51,7 @@ module.exports = {
             preProcessor: 'scss',
             patterns: [
                 path.resolve(__dirname, 'src/styles/_variables.scss'),
-                path.resolve(__dirname, 'src/styles/element-variables.scss')
+                path.resolve(__dirname, 'src/styles/_mixins.scss')
             ]
         }
     },
