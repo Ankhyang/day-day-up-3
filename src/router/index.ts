@@ -2,12 +2,13 @@
  * @Description: 路由配置
  * @Author: yangzai
  * @Date: 2021-05-18 09:50:49
- * @LastEditTime: 2021-05-25 09:53:39
+ * @LastEditTime: 2021-05-25 14:44:41
  * @LastEditors: yangzai
  */
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import Lauyout from '@/layout/index.vue'
 
+// 不需要动态判断权限的路由，如登录页、404、等通用页面
 const constantFiles = require.context('./constantModules', true, /\.ts$/)
 let constantModules: Array<RouteRecordRaw> = []
 constantFiles.keys().forEach(key => {
@@ -15,6 +16,7 @@ constantFiles.keys().forEach(key => {
     constantModules = constantModules.concat(constantFiles(key).default)
 });
 
+// 需要动态判断权限并通过 addRoutes 动态添加的页面
 const asyncFiles = require.context('./permissionModules', true, /\.ts$/)
 let permissionModules: Array<RouteRecordRaw> = []
 asyncFiles.keys().forEach(key => {

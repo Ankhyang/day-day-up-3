@@ -2,19 +2,26 @@
  * @Description: app布局入口
  * @Author: yangzai
  * @Date: 2021-05-17 09:55:26
- * @LastEditTime: 2021-05-19 09:27:41
+ * @LastEditTime: 2021-05-25 10:41:06
  * @LastEditors: yangzai
 -->
 <template>
     <div class="app-wrapper">
-        <Sidebar class="sidebar-container" />
+        <SideBar class="sidebar-container" />
+        <div class="main-container">
+            <div>
+                <NavBar/>
+                <TagsView/>
+            </div>
+            <AppMain/>
+        </div>
     </div>
 </template>
 <script lang="ts">
-import { defineComponent, computed, onBeforeMount, onBeforeUnmount, onMounted, reactive, toRefs } from 'vue'
-import { AppMain, NavBar, Settings, TagsView, SideBar } from './components'
+import { defineComponent} from 'vue'
+import { AppMain, NavBar, TagsView, SideBar } from './components'
 import { useI18n } from 'vue-i18n'
-import { useStore } from '@/store'
+// import { useStore } from '@/store'
 
 export default defineComponent({
     name: 'Layout',
@@ -22,7 +29,7 @@ export default defineComponent({
         AppMain,
         NavBar,
         SideBar,
-        Settings,
+        // Settings,
         TagsView
     },
     setup() {

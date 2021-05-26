@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yangzai
  * @Date: 2021-05-17 09:55:26
- * @LastEditTime: 2021-05-25 09:56:22
+ * @LastEditTime: 2021-05-25 14:32:57
  * @LastEditors: yangzai
  */
 module.exports = {
@@ -12,7 +12,7 @@ module.exports = {
     },
     extends: [
       'plugin:vue/vue3-strongly-recommended',
-      '@vue/standard',
+    //   '@vue/standard',
       '@vue/typescript/recommended'
     ],
     parserOptions: {
@@ -23,15 +23,16 @@ module.exports = {
       'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
       '@typescript-eslint/ban-types': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
-      '@typescript-eslint/member-delimiter-style': ['error',
-        {
-          multiline: {
-            delimiter: 'none'
-          },
-          singleline: {
-            delimiter: 'comma'
-          }
-        }],
+    //   '@typescript-eslint/member-delimiter-style': ['error',
+    //     {
+    //       multiline: {
+    //         delimiter: 'none'
+    //       },
+    //       singleline: {
+    //         delimiter: 'comma'
+    //       }
+    //     }],
+      '@typescript-eslint/member-delimiter-style': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
       'space-before-function-paren': ['error', 'never'],
       'vue/array-bracket-spacing': 'error',
@@ -55,7 +56,7 @@ module.exports = {
       ],
       'vue/attribute-hyphenation': 'off',
       'vue/custom-event-name-casing': 'off',
-      "indent": ["off", 2]
+      "indent": "off"
     },
     overrides: [
       {

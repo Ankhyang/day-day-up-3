@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yangzai
  * @Date: 2021-05-17 09:55:26
- * @LastEditTime: 2021-05-25 09:49:16
+ * @LastEditTime: 2021-05-25 10:42:37
  * @LastEditors: yangzai
  */
 const { resolve } = require('path')
@@ -40,7 +40,7 @@ module.exports = {
         noInfo: false,
         // 通过设置让浏览器 overlay 同时显示警告和错误
         overlay: {
-            warnings: true,
+            warnings: false,
             errors: true
         }
     },

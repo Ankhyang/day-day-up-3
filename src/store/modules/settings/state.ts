@@ -2,12 +2,12 @@
  * @Description: settings state
  * @Author: yangzai
  * @Date: 2021-05-19 10:41:49
- * @LastEditTime: 2021-05-19 10:53:24
+ * @LastEditTime: 2021-05-25 14:24:41
  * @LastEditors: yangzai
  */
 
 import elementVariables from '@/styles/element-variables.scss'
-import layoutSettings from '@/config/default/layout.vue'
+import layoutSettings from '@/config/default/layout'
 
 export interface SettingsState {
     theme: string,
