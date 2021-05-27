@@ -2,19 +2,58 @@
  * @Description: 
  * @Author: yangzai
  * @Date: 2021-05-18 18:08:39
- * @LastEditTime: 2021-05-26 18:15:22
+ * @LastEditTime: 2021-05-27 10:40:41
  * @LastEditors: yangzai
 -->
 <template>
     <div v-if="!item.meta || !item.meta.path">
         <!-- 无子菜单 -->
         <template v-if="singleChild && !singleChild.children">
-            
+            <SidebarItemLink 
+                v-if="singleChild.meta" 
+                :to="resolvePath(singleChild.path)"
+            >
+                <el-menu-item :index="resolvePath(singleChild.path)">
+                    <svg 
+                        v-if="singleChild.meta.icon"
+                        class="icon"
+                        aria-hidden="true"
+                        font-size="17px"
+                    >
+                        <use :xlink:href="singleChild.meta.icon"/>
+                    </svg>
+                    <span v-if="singleChild.meta.title">
+                        {{t("route." + singleChild.meta.title)}}
+                    </span>
+                </el-menu-item>
+            </SidebarItemLink>
         </template>
 
         <!-- 有子菜单 -->
-        <el-submenu v-else>
-            
+        <el-submenu v-else :index="resolvePath(item.path)">
+            <template #title>
+                <svg
+                    v-if="item.meta && item.meta.icon"
+                    class="icon"
+                    aria-hidden="true"
+                    font-size="16px"
+                >
+                    <use :xlink:href="item.meta.icon"/>
+                </svg>
+                <span v-if="item.meta && item.meta.title">
+                    {{t("route." + item.meta.title)}}
+                </span>
+            </template>
+            <template v-if="item.children">
+                <sidebar-item
+                    v-for="child in item.children"
+                    :key="child.path"
+                    :item="child"
+                    :is-collapse="isCollapse"
+                    :base-path="resolvePath(child.path)"
+                    class="nest-menu"
+                />
+            </template>
         </el-submenu>
     </div>
 </template>
@@ -32,7 +71,7 @@ export default defineComponent({
             type: Object as PropType<RouteRecordRaw>,
             required: true
         },
-        collapse: {
+        isCollapse: {
             type: Boolean,
             required: true
         },

@@ -2,18 +2,16 @@
  * @Description: 
  * @Author: yangzai
  * @Date: 2021-05-20 10:38:25
- * @LastEditTime: 2021-05-20 13:59:48
+ * @LastEditTime: 2021-05-27 13:39:08
  * @LastEditors: yangzai
  */
 import { ActionContext, ActionTree } from 'vuex'
 import { UserActionTypes } from './action-type'
-import { UserMutationTypes } from './mutation-type'
 import { Mutations } from './mutations'
-import { UserState } from './state'
+import { state, UserState } from './state'
+import { userInfoRequest } from '@/apis/user'
 
-import type { state } from './state'
-import { RootState } from '@/store'
-export {state} 
+import { RootState, useStore } from '@/store'
 
 type AugumentedActionContext = Omit<ActionContext<UserState, RootState>, 'commit'> & 
 {
@@ -49,9 +47,12 @@ export const actions: ActionTree<UserState, RootState> & Actions = {
 
     },
     [UserActionTypes.ACTION_LOGIN_OUT]({ commit }: AugumentedActionContext) {
-
+        if(state.token === '') {
+            throw Error('token is uundefined')
+        }
+        // userInfoRequest
     },
-    [UserActionTypes.ACTION_GET_USER_INFO]({ commit }: AugumentedActionContext) {
+    async [UserActionTypes.ACTION_GET_USER_INFO]({ commit }: AugumentedActionContext) {
 
     },
     [UserActionTypes.ACTION_CHANGE_ROLES]({ commit }: AugumentedActionContext) {

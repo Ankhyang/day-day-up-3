@@ -2,7 +2,7 @@
  * @Description: 左侧菜单导航
  * @Author: yangzai
  * @Date: 2021-05-18 17:46:03
- * @LastEditTime: 2021-05-26 15:08:22
+ * @LastEditTime: 2021-05-27 10:41:51
  * @LastEditors: yangzai
 -->
 <template>
@@ -10,7 +10,7 @@
         <SidebarLogo/>
         <el-scrollbar wrap-class="scrollbar-wrapper">
             <el-menu
-                :collapse="!collapse"
+                :collapse="!isCollapse"
                 :unique-opened="false"
                 :background-color="variables.menuBg"
                 :text-color="variables.menuText"
@@ -21,7 +21,7 @@
                     v-for="route in routes"
                     :key="route.path"
                     :item="route"
-                    :collapse="isCollapse"
+                    :is-collapse="isCollapse"
                 />
             </el-menu>
         </el-scrollbar>
@@ -50,6 +50,7 @@ export default defineComponent({
         const routes = computed(() => {
             return store.state.permission.routes
         })
+        console.log(routes.value)
         const showLogo = computed(() => {
             return store.state.settings.showSidebarLogo
         })
