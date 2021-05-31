@@ -2,7 +2,7 @@
  * @Description: 权限
  * @Author: yangzai
  * @Date: 2021-05-17 09:57:07
- * @LastEditTime: 2021-05-27 11:14:06
+ * @LastEditTime: 2021-05-31 17:48:44
  * @LastEditors: yangzai
  */
 import NProgress from 'nprogress'
@@ -31,9 +31,19 @@ router.beforeEach(async (to: RouteLocationNormalized, _: RouteLocationNormalized
             if(store.state.user.roles.length === 0) {
                 try{
                     await store.dispatch(UserActionTypes.ACTION_GET_USER_INFO, undefined)
-                    
+                    const roles = store.state.user.roles || ['admin', 'editor']
+                    store.dispatch(PermissionActionType.ACTION_SET_ROUTES, roles)
+                    store.state.permission.dynamicRoutes.forEach(route => {
+                        router.addRoute(route)
+                    })
+                    // replace: true只是一个设置信息，告诉VUE本次操作后，不能通过浏览器后退按钮，返回前一个路由
+                    next({ ...to, replace: true })
                 }catch(err) {
-
+                    store.dispatch(UserActionTypes.ACTION_RESET_TOKEN, undefined)
+                    ElMessage.error(err || 'Has Error')
+                    // next(`/login?redirect=${to.path}`)
+                    next({ path: '/' })
+                    NProgress.done()
                 }
             }else{
                 next()
@@ -43,7 +53,8 @@ router.beforeEach(async (to: RouteLocationNormalized, _: RouteLocationNormalized
         if(whitelist.includes(to.path)) {
             next()
         }else{
-            next(`login?redirect=${to.path}`)
+            // next(`login?redirect=${to.path}`)
+            next({ path: '/' })
             NProgress.done()
         }
     }

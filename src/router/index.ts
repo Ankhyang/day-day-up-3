@@ -2,11 +2,11 @@
  * @Description: 路由配置
  * @Author: yangzai
  * @Date: 2021-05-18 09:50:49
- * @LastEditTime: 2021-05-25 14:44:41
+ * @LastEditTime: 2021-05-31 18:01:17
  * @LastEditors: yangzai
  */
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import Lauyout from '@/layout/index.vue'
+import Layout from '@/layout/index.vue'
 
 // 不需要动态判断权限的路由，如登录页、404、等通用页面
 const constantFiles = require.context('./constantModules', true, /\.ts$/)
@@ -27,7 +27,7 @@ asyncFiles.keys().forEach(key => {
 export const constantRoutes: Array<RouteRecordRaw> = [
     {
         path: '/redirect',
-        component: Lauyout,
+        component: Layout,
         meta: {hidde: true},
         children: [
             {
@@ -38,12 +38,13 @@ export const constantRoutes: Array<RouteRecordRaw> = [
     },
     {
         path: '/',
-        component: Lauyout,
+        component: Layout,
+        redirect: '/dashboard',
         children: [
             {
                 path: 'dashboard',
                 name: 'Dashboard',
-                component: () => import('@/views/dashboard/index.vue'),
+                component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index.vue'),
                 meta: {
                     title: 'dashboard',
                     icon: '#icondashboard',

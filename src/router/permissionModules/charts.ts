@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yangzai
  * @Date: 2021-05-26 16:12:48
- * @LastEditTime: 2021-05-26 17:53:11
+ * @LastEditTime: 2021-05-31 17:33:36
  * @LastEditors: yangzai
  */
 import { RouteRecordRaw } from 'vue-router'
@@ -15,7 +15,8 @@ const chartsRouter: Array<RouteRecordRaw> = [
         name: 'Charts',
         meta: {
             title: 'charts',
-            icon: '#iconchart1'
+            icon: '#iconchart1',
+            roles: ['admin', 'editor'],
         },
         children: [
             {

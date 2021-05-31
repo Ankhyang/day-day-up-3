@@ -2,7 +2,7 @@
  * @Description: 左侧菜单导航
  * @Author: yangzai
  * @Date: 2021-05-18 17:46:03
- * @LastEditTime: 2021-05-27 10:41:51
+ * @LastEditTime: 2021-05-31 17:36:16
  * @LastEditors: yangzai
 -->
 <template>
@@ -50,7 +50,6 @@ export default defineComponent({
         const routes = computed(() => {
             return store.state.permission.routes
         })
-        console.log(routes.value)
         const showLogo = computed(() => {
             return store.state.settings.showSidebarLogo
         })

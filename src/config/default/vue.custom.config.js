@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yangzai
  * @Date: 2021-05-21 16:04:08
- * @LastEditTime: 2021-05-24 16:36:21
+ * @LastEditTime: 2021-05-31 17:22:52
  * @LastEditors: yangzai
  */
 // interface con{
@@ -36,7 +36,7 @@ const vueDefaultConfig  = {
     title: 'vue3-ts-composition-admin-template',
     titleSeparator: '-',
     titleReverse: false,
-    devePort: '9999',
+    devePort: '8082',
     abbreviation: 'vt2at',
     providePlugin: {},
     build7z: false,
