@@ -22,13 +22,13 @@ NProgress.configure({ showSpinner: false })
 router.beforeEach(async (to: RouteLocationNormalized, _: RouteLocationNormalized, next: any) => {
     NProgress.start()
     const store = useStore()
-    if(store.state.user.token) {
-        if(to.path === '/login') {
-            // 已登录， 跳转主界面
-            next({ path: '/' })
-            NProgress.done()
-        }else{
-            if(store.state.user.roles.length === 0) {
+    // if(store.state.user.token) {
+    //     if(to.path === '/login') {
+    //         // 已登录， 跳转主界面
+    //         next({ path: '/' })
+    //         NProgress.done()
+    //     }else{
+    //         if(store.state.user.roles.length === 0) {
                 try{
                     await store.dispatch(UserActionTypes.ACTION_GET_USER_INFO, undefined)
                     const roles = store.state.user.roles || ['admin', 'editor']
@@ -37,27 +37,29 @@ router.beforeEach(async (to: RouteLocationNormalized, _: RouteLocationNormalized
                         router.addRoute(route)
                     })
                     // replace: true只是一个设置信息，告诉VUE本次操作后，不能通过浏览器后退按钮，返回前一个路由
-                    next({ ...to, replace: true })
+                    // next({ ...to, replace: true })
+                    next()
                 }catch(err) {
                     store.dispatch(UserActionTypes.ACTION_RESET_TOKEN, undefined)
                     ElMessage.error(err || 'Has Error')
                     // next(`/login?redirect=${to.path}`)
-                    next({ path: '/' })
+                    // next({ path: '/' })
+                    next()
                     NProgress.done()
                 }
-            }else{
-                next()
-            }
-        }
-    }else{
-        if(whitelist.includes(to.path)) {
-            next()
-        }else{
-            // next(`login?redirect=${to.path}`)
-            next({ path: '/' })
-            NProgress.done()
-        }
-    }
+    //         }else{
+    //             next()
+    //         }
+    //     }
+    // }else{
+    //     if(whitelist.includes(to.path)) {
+    //         next()
+    //     }else{
+    //         // next(`login?redirect=${to.path}`)
+    //         next({ path: '/' })
+    //         NProgress.done()
+    //     }
+    // }
 })
 
 router.afterEach((to: RouteLocationNormalized) => {

@@ -10,10 +10,10 @@
         <SideBar class="sidebar-container" />
         <div class="main-container">
             <div>
-                <NavBar/>
-                <TagsView/>
+                <!-- <NavBar/>
+                <TagsView/> -->
             </div>
-            <AppMain/>
+            <!-- <AppMain/> -->
         </div>
     </div>
 </template>

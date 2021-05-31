@@ -12,13 +12,23 @@ import { UserInfoModel, Users } from '@/model/userModel'
 import { LoginModel } from '@/model/loginModel'
 import https from '@/utils/https'
 
+const userInfo = {
+    token: '090293029302930293',
+    name: 'Ankh',
+    avatar: '',
+    introduction: '我是账户管理员',
+    roles: ['admin'],
+    email: 'ankh22222@163.com'
+}
+
 export const loginRequest = (userInfo: RequestParams) => {
     // 自动化产生model
     return https(false).request<RootObject<LoginModel>>('user/login', Method.POST, userInfo, ContentType.json)
 }
 
 export const userInfoRequest = () => {
-    return https().request<RootObject<UserInfoModel>>('user/userInfo', Method.GET, undefined, ContentType.form)
+    // return https().request<RootObject<UserInfoModel>>('user/userInfo', Method.GET, undefined, ContentType.form)
+    return new Promise((resolve, reject) => resolve({code: 0, data: userInfo, msg: 'SUCCESS'}))
 }
 
 export const getUsers = (user: any) => {

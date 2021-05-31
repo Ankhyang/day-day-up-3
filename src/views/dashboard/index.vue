@@ -6,7 +6,7 @@
  * @LastEditors: yangzai
 -->
 <template>
-    
+    <div>hahahhahah</div>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'

@@ -14,6 +14,16 @@ import { userInfoRequest } from '@/apis/user'
 import { RootState, useStore } from '@/store'
 import { UserMutationTypes } from './mutation-type'
 
+
+const userInfo = {
+    token: '090293029302930293',
+    name: 'Ankh',
+    avatar: '',
+    introduction: '我是账户管理员',
+    roles: ['admin'],
+    email: 'ankh22222@163.com'
+}
+
 type AugumentedActionContext = Omit<ActionContext<UserState, RootState>, 'commit'> & 
 {
     commit<K extends keyof Mutations> (
@@ -52,21 +62,21 @@ export const actions: ActionTree<UserState, RootState> & Actions = {
         
     },
     async [UserActionTypes.ACTION_GET_USER_INFO]({ commit }: AugumentedActionContext) {
-        if(state.token === '') {
-            throw Error('token is undefined')
-        }
-        await userInfoRequest().then(res => {
-            if(res?.code === 0) {
-                commit(UserMutationTypes.SET_ROLES, res.data.roles)
-                commit(UserMutationTypes.SET_AVATAR, res.data.avatar)
-                commit(UserMutationTypes.SET_NAME, res.data.name)
-                commit(UserMutationTypes.SET_INTRODUCTION, res.data.introduction)
-                commit(UserMutationTypes.SET_EMAIL, res.data.email)
-                return res
-            }else{
-                throw Error('Vertification failed, please LOgin again.')
-            }
-        })
+        // if(state.token === '') {
+        //     throw Error('token is undefined')
+        // }
+        // await userInfoRequest().then(res => {
+            // if(res.code === 0) {
+                commit(UserMutationTypes.SET_ROLES, userInfo.roles)
+                commit(UserMutationTypes.SET_AVATAR, userInfo.avatar)
+                commit(UserMutationTypes.SET_NAME, userInfo.name)
+                commit(UserMutationTypes.SET_INTRODUCTION, userInfo.introduction)
+                commit(UserMutationTypes.SET_EMAIL, userInfo.email)
+            //     return res
+            // }else{
+            //     throw Error('Vertification failed, please LOgin again.')
+            // }
+        // })
     },
     [UserActionTypes.ACTION_CHANGE_ROLES]({ commit }: AugumentedActionContext) {
         
