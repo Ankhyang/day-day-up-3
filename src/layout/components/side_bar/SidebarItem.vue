@@ -2,18 +2,19 @@
  * @Description: 
  * @Author: yangzai
  * @Date: 2021-05-18 18:08:39
- * @LastEditTime: 2021-05-27 10:40:41
+ * @LastEditTime: 2021-06-07 18:15:56
  * @LastEditors: yangzai
 -->
 <template>
-    <div v-if="!item.meta || !item.meta.path">
+    <div v-if="!item.meta || !item.meta.path" :class="[isCollapse ? 'simple-mode':'full-mode', {'first-level': isFirstLevel}]">
         <!-- 无子菜单 -->
         <template v-if="singleChild && !singleChild.children">
             <SidebarItemLink 
                 v-if="singleChild.meta" 
-                :to="resolvePath(singleChild.path)"
+                :to="singleChild.path"
             >
-                <el-menu-item :index="resolvePath(singleChild.path)">
+                <el-menu-item :index="singleChild.path" 
+                    :class="{'submenu-title-noDropdown': isFirstLevel}">
                     <svg 
                         v-if="singleChild.meta.icon"
                         class="icon"
@@ -30,7 +31,7 @@
         </template>
 
         <!-- 有子菜单 -->
-        <el-submenu v-else :index="resolvePath(item.path)">
+        <el-submenu v-else :index="item.path">
             <template #title>
                 <svg
                     v-if="item.meta && item.meta.icon"
@@ -50,7 +51,7 @@
                     :key="child.path"
                     :item="child"
                     :is-collapse="isCollapse"
-                    :base-path="resolvePath(child.path)"
+                    :base-path="child.path"
                     class="nest-menu"
                 />
             </template>
@@ -78,7 +79,11 @@ export default defineComponent({
         basePath: {
             type: String,
             required: true
-        }
+        },
+        isFirstLevel: {
+            type: Boolean,
+            required: true
+        },
     },
     components: {
         SidebarItemLink
@@ -130,76 +135,65 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .el-submenu.is-active > .el-submenu__title {
-  color: $subMenuActiveText !important;
+    color: $subMenuActiveText !important;
 }
-
 .full-mode {
-  .nest-menu .el-submenu > .el-submenu__title,
-  .el-submenu .el-menu-item {
-    min-width: $sideBarWidth !important;
-    background-color: $subMenuBg !important;
+    .nest-menu .el-submenu > .el-submenu__title,
+    .el-submenu .el-menu-item {
+        min-width: $sideBarWidth !important;
+        background-color: $subMenuBg !important;
 
-    &:hover {
-      background-color: $subMenuHover !important;
+        &:hover {
+        background-color: $subMenuHover !important;
+        }
     }
-  }
-  .el-menu-item{
-    &>span{
-      display: inline-block;
-      padding-left: 5px;
+    .el-menu-item{
+        &>span{
+        display: inline-block;
+        padding-left: 5px;
+        }
     }
-  }
-  .el-submenu {
-    overflow: hidden;
-
-    & > .el-submenu__title {
-      .el-submenu__icon-arrow {
-        display: none;
-      }
-
-      & > span {
-             padding-left: 5px;
-
-      }
-    }
-  }
-}
-
-.simple-mode {
-  &.first-level {
-    .submenu-title-noDropdown {
-      padding: 0 !important;
-      position: relative;
-
-      .el-tooltip {
-        padding: 0 !important;
-      }
-    }
-
     .el-submenu {
-      overflow: hidden;
-
-      & > .el-submenu__title {
-        padding: 0px !important;
-
-        .el-submenu__icon-arrow {
-          display: none;
+        overflow: hidden;
+        & > .el-submenu__title {
+            .el-submenu__icon-arrow {
+                display: none;
+            }
+            & > span {
+                padding-left: 5px;
+            }
         }
-
-        & > span {
-          visibility: hidden;
-        }
-      }
     }
-  }
+}
+.simple-mode {
+    &.first-level {
+        .submenu-title-noDropdown {
+            padding: 0 !important;
+            position: relative;
+            .el-tooltip {
+                padding: 0 !important;
+            }
+        }
+        .el-submenu {
+            overflow: hidden;
+            & > .el-submenu__title {
+                padding: 0px !important;
+                .el-submenu__icon-arrow {
+                    display: none;
+                }
+                & > span {
+                    visibility: hidden;
+                }
+            }
+        }
+    }
 }
 svg {
-  margin-right: 16px;
+    margin-right: 16px;
 }
-
 .simple-mode {
-  svg {
-    margin-left: 20px;
-  }
+    svg {
+        margin-left: 20px;
+    }
 }
 </style>

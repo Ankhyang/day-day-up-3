@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yangzai
  * @Date: 2021-05-26 16:12:48
- * @LastEditTime: 2021-05-31 17:33:36
+ * @LastEditTime: 2021-06-07 18:11:17
  * @LastEditors: yangzai
  */
 import { RouteRecordRaw } from 'vue-router'
@@ -25,6 +25,7 @@ const chartsRouter: Array<RouteRecordRaw> = [
                 component: () => import('@/views/charts/BarChartDemo.vue'),
                 meta: {
                     title: 'barChart',
+                    icon: '#iconchart1',
                     noCache: true
                 }
             }

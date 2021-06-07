@@ -2,7 +2,7 @@
  * @Description: app布局入口
  * @Author: yangzai
  * @Date: 2021-05-17 09:55:26
- * @LastEditTime: 2021-05-25 10:41:06
+ * @LastEditTime: 2021-06-07 18:09:45
  * @LastEditors: yangzai
 -->
 <template>
@@ -77,7 +77,7 @@ export default defineComponent({
     width: $sideBarWidth !important;
     height: 100%;
     position: fixed;
-    font-size: 0px;
+    font-size: 16px;
     top: 0;
     bottom: 0;
     left: 0;

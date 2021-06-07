@@ -2,7 +2,7 @@
  * @Description: 路由配置
  * @Author: yangzai
  * @Date: 2021-05-18 09:50:49
- * @LastEditTime: 2021-05-31 18:01:17
+ * @LastEditTime: 2021-06-07 17:41:27
  * @LastEditors: yangzai
  */
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
@@ -44,7 +44,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
             {
                 path: 'dashboard',
                 name: 'Dashboard',
-                component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index.vue'),
+                component: () => import(/* webpackChunkName: "dashboard" */'@/views/dashboard/index.vue'),
                 meta: {
                     title: 'dashboard',
                     icon: '#icondashboard',

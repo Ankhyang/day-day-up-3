@@ -2,7 +2,7 @@
  * @Description: 侧边栏logo
  * @Author: yangzai
  * @Date: 2021-05-18 18:08:28
- * @LastEditTime: 2021-05-25 10:43:56
+ * @LastEditTime: 2021-06-07 17:52:07
  * @LastEditors: yangzai
 -->
 <template>
@@ -23,7 +23,7 @@
             >
                 <img :src="Logo" class="sidebar-logo">
                 <h1 class="sidebar-title">
-                    Vue<span style="color:#57CAEB">3</span>管理后台
+                    Vue<span style="color:#57CAEB">3</span>TS项目
                 </h1>
             </router-link>
         </transition>
