@@ -2,12 +2,15 @@
  * @Description: 左侧菜单导航
  * @Author: yangzai
  * @Date: 2021-05-18 17:46:03
- * @LastEditTime: 2021-05-31 17:36:16
+ * @LastEditTime: 2021-06-08 15:51:21
  * @LastEditors: yangzai
 -->
 <template>
-    <div class="sideWrap">
-        <SidebarLogo/>
+    <div 
+        :class="{'has-logo': showLogo}"
+        class="sideWrap"
+    >
+        <SidebarLogo v-if="showLogo" :collapse="isCollapse"/>
         <el-scrollbar wrap-class="scrollbar-wrapper">
             <el-menu
                 :collapse="!isCollapse"
@@ -16,11 +19,13 @@
                 :text-color="variables.menuText"
                 :active-text-color="menuActiveTextColor"
                 :default-active="activeMenu"
+                mode="vertical"
             >
                 <SidebarItem
                     v-for="route in routes"
                     :key="route.path"
                     :item="route"
+                    :base-path="route.path"
                     :is-collapse="isCollapse"
                 />
             </el-menu>
@@ -81,5 +86,36 @@ export default defineComponent({
 })
 </script>
 <style lang="scss" scoped>
-    
+.sidebar-container {
+    .horizontal-collapse-transition {
+        transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
+    }
+    .scrollbar-wrapper {
+        overflow-x: hidden !important;
+    }
+    .el-scrollbar__view {
+        height: 100%;
+    }
+    .el-scrollbar__bar {
+        &.is-vertical {
+            right: 0px;
+        }
+        &.is-horizontal {
+            display: none;
+        }
+    }
+}
+.el-scrollbar {
+    height: 100%;
+}
+.has-logo {
+    .el-scrollbar {
+        height: calc(100vh - 100px);
+    }
+}
+.el-menu {
+    border: none;
+    height: 100%;
+    width: 100% !important;
+}
 </style>

@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yangzai
  * @Date: 2021-05-26 16:19:51
- * @LastEditTime: 2021-05-26 17:29:11
+ * @LastEditTime: 2021-06-08 11:10:00
  * @LastEditors: yangzai
 -->
 <template>
@@ -35,7 +35,7 @@ export default defineComponent({
         }
     },
     setup(props) {
-        const { mounted, chart, beforeDestroy, activated, deactived } = resize()
+        const { mounted, chart, beforeDestroy, activated, deactivated } = resize()
         const initChart = () => {
             const barChart = init(document.getElementById(props.id) as HTMLDivElement) 
             const xAxisData: string[] = []
@@ -150,7 +150,7 @@ export default defineComponent({
         })
 
         onDeactivated(() => {
-            deactived()
+            deactivated()
         })
         return {
             

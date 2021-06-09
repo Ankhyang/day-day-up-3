@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yangzai
  * @Date: 2021-05-18 18:08:39
- * @LastEditTime: 2021-06-07 18:15:56
+ * @LastEditTime: 2021-06-08 15:50:53
  * @LastEditors: yangzai
 -->
 <template>
@@ -11,9 +11,9 @@
         <template v-if="singleChild && !singleChild.children">
             <SidebarItemLink 
                 v-if="singleChild.meta" 
-                :to="singleChild.path"
+                :to="resolvePath(singleChild.path)"
             >
-                <el-menu-item :index="singleChild.path" 
+                <el-menu-item :index="resolvePath(singleChild.path)" 
                     :class="{'submenu-title-noDropdown': isFirstLevel}">
                     <svg 
                         v-if="singleChild.meta.icon"
@@ -31,7 +31,7 @@
         </template>
 
         <!-- 有子菜单 -->
-        <el-submenu v-else :index="item.path">
+        <el-submenu v-else :index="resolvePath(item.path)">
             <template #title>
                 <svg
                     v-if="item.meta && item.meta.icon"
@@ -51,7 +51,8 @@
                     :key="child.path"
                     :item="child"
                     :is-collapse="isCollapse"
-                    :base-path="child.path"
+                    :is-first-level="false"
+                    :base-path="resolvePath(child.path)"
                     class="nest-menu"
                 />
             </template>
@@ -74,7 +75,7 @@ export default defineComponent({
         },
         isCollapse: {
             type: Boolean,
-            required: true
+            required: false
         },
         basePath: {
             type: String,
@@ -112,7 +113,6 @@ export default defineComponent({
             }
             return { ...props.item, path: '' }
         })
-
         // 路径处理
         const resolvePath = (routePath: string) => {
             if(isExternal(routePath)) {
@@ -142,15 +142,14 @@ export default defineComponent({
     .el-submenu .el-menu-item {
         min-width: $sideBarWidth !important;
         background-color: $subMenuBg !important;
-
         &:hover {
-        background-color: $subMenuHover !important;
+            background-color: $subMenuHover !important;
         }
     }
     .el-menu-item{
         &>span{
-        display: inline-block;
-        padding-left: 5px;
+            display: inline-block;
+            padding-left: 5px;
         }
     }
     .el-submenu {

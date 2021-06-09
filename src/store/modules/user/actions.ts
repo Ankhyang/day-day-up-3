@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yangzai
  * @Date: 2021-05-20 10:38:25
- * @LastEditTime: 2021-05-31 17:13:54
+ * @LastEditTime: 2021-06-09 15:17:11
  * @LastEditors: yangzai
  */
 import { ActionContext, ActionTree } from 'vuex'
@@ -14,11 +14,13 @@ import { userInfoRequest } from '@/apis/user'
 import { RootState, useStore } from '@/store'
 import { UserMutationTypes } from './mutation-type'
 
+import { removeToken } from '@/utils/cookies'
+
 
 const userInfo = {
     token: '090293029302930293',
     name: 'Ankh',
-    avatar: '',
+    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
     introduction: '我是账户管理员',
     roles: ['admin'],
     email: 'ankh22222@163.com'
@@ -59,7 +61,8 @@ export const actions: ActionTree<UserState, RootState> & Actions = {
         commit(UserMutationTypes.SET_ROLES, [])
     },
     [UserActionTypes.ACTION_LOGIN_OUT]({ commit }: AugumentedActionContext) {
-        
+        console.log(commit)
+        removeToken()
     },
     async [UserActionTypes.ACTION_GET_USER_INFO]({ commit }: AugumentedActionContext) {
         // if(state.token === '') {

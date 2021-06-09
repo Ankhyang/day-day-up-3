@@ -2,11 +2,11 @@
  * @Description: 
  * @Author: yangzai
  * @Date: 2021-05-25 09:28:22
- * @LastEditTime: 2021-05-31 17:50:13
+ * @LastEditTime: 2021-06-08 10:40:36
  * @LastEditors: yangzai
 -->
 <template>
-    <div>hahahhahah</div>
+    <div class="dashboard-container">hahahhahah</div>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'

@@ -2,7 +2,7 @@
  * @Description: app布局入口
  * @Author: yangzai
  * @Date: 2021-05-17 09:55:26
- * @LastEditTime: 2021-06-07 18:09:45
+ * @LastEditTime: 2021-06-09 15:49:30
  * @LastEditors: yangzai
 -->
 <template>
@@ -10,8 +10,8 @@
         <SideBar class="sidebar-container" />
         <div class="main-container">
             <div>
-                <!-- <NavBar/>
-                <TagsView/> -->
+                <NavBar/>
+                <TagsView/>
             </div>
             <!-- <AppMain/> -->
         </div>
@@ -77,7 +77,7 @@ export default defineComponent({
     width: $sideBarWidth !important;
     height: 100%;
     position: fixed;
-    font-size: 16px;
+    font-size: 0px;
     top: 0;
     bottom: 0;
     left: 0;

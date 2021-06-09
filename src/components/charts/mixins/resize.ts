@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yangzai
  * @Date: 2021-05-26 16:26:02
- * @LastEditTime: 2021-05-26 16:40:39
+ * @LastEditTime: 2021-06-08 11:09:42
  * @LastEditors: yangzai
  */
 import { ref } from 'vue'
@@ -51,7 +51,7 @@ export default function() {
         initResizeEvent()
         initSidebarResizeEvent()
     }
-    const deactived = () => {
+    const deactivated = () => {
         destroyResizeEvent()
         destroySidebarResizeEvent()
     }
@@ -60,6 +60,6 @@ export default function() {
         mounted,
         beforeDestroy,
         activated,
-        deactived
+        deactivated
     }
 }

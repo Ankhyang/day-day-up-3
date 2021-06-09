@@ -2,11 +2,12 @@
  * @Description: 侧边栏logo
  * @Author: yangzai
  * @Date: 2021-05-18 18:08:28
- * @LastEditTime: 2021-06-07 17:52:07
+ * @LastEditTime: 2021-06-08 11:35:27
  * @LastEditors: yangzai
 -->
 <template>
-    <div class="sidebar-logo-container">
+    <div class="sidebar-logo-container" 
+    :class="[collapse ? 'collapse': 'notitle']">
         <transition name="sidebarLogoFade">
             <router-link 
             v-if="false"
@@ -96,18 +97,18 @@ export default defineComponent({
     }
   }
 
-  &.collapse {
-    .sidebar-logo {
-      margin-right: 12px;
+    &.collapse {
+        .sidebar-logo {
+            margin-right: 12px;
+        }
     }
-  }
-  &.notitle{
-    .sidebar-title{
-      display: none;
+    &.notitle{
+        .sidebar-title{
+            display: none;
+            }
+        & .sidebar-logo {
+            height: 60%;
+        }
     }
-       & .sidebar-logo {
-      height: 60%;
-    }
-  }
 }
 </style>

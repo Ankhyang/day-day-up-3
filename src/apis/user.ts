@@ -2,7 +2,7 @@
  * @Description: 用户相关接口
  * @Author: yangzai
  * @Date: 2021-05-27 13:39:39
- * @LastEditTime: 2021-05-28 14:26:41
+ * @LastEditTime: 2021-06-09 15:02:35
  * @LastEditors: yangzai
  */
 import { RequestParams, ContentType, Method } from 'axios-mapper'
@@ -15,7 +15,7 @@ import https from '@/utils/https'
 const userInfo = {
     token: '090293029302930293',
     name: 'Ankh',
-    avatar: '',
+    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
     introduction: '我是账户管理员',
     roles: ['admin'],
     email: 'ankh22222@163.com'
