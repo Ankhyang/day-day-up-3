@@ -2,7 +2,7 @@
  * @Description: app布局入口
  * @Author: yangzai
  * @Date: 2021-05-17 09:55:26
- * @LastEditTime: 2021-06-09 15:49:30
+ * @LastEditTime: 2021-06-09 16:36:30
  * @LastEditors: yangzai
 -->
 <template>
@@ -13,7 +13,7 @@
                 <NavBar/>
                 <TagsView/>
             </div>
-            <!-- <AppMain/> -->
+            <AppMain/>
         </div>
     </div>
 </template>
