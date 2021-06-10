@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yangzai
  * @Date: 2021-05-19 10:56:39
- * @LastEditTime: 2021-05-19 11:30:34
+ * @LastEditTime: 2021-06-10 11:19:34
  * @LastEditors: yangzai
  */
 import {
@@ -20,7 +20,7 @@ import { Mutations, mutations } from './mutations'
 import type { SettingsState } from './state'
 export { SettingsState }
 
-export type SettingsStore<S = SettingsState> = Omit<VuexStore<S>, 'gettters' | 'commit' | 'dispatch'>
+export type SettingStore<S = SettingsState> = Omit<VuexStore<S>, 'gettters' | 'commit' | 'dispatch'>
 & {
     commit<K extends keyof Mutations, P extends Parameters<Mutations[K]>[1]> (
         key: K,

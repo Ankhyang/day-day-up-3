@@ -2,20 +2,22 @@
  * @Description: 
  * @Author: yangzai
  * @Date: 2021-06-09 16:43:45
- * @LastEditTime: 2021-06-09 17:17:05
+ * @LastEditTime: 2021-06-10 10:03:55
  * @LastEditors: yangzai
 -->
 <template>
     <el-scrollbar
+        ref="scrollContainerRef"
         class="scroll-container" 
         @wheel.prevent="handleScroll">
         <slot/>
     </el-scrollbar>
 </template>
 <script lang="ts">
-import { computed, defineComponent, getCurrentInstance, onBeforeMount, onMounted, reactive, ref, toRefs } from 'vue'
+import { computed, defineComponent, getCurrentInstance, onBeforeUnmount, onMounted, reactive, ref, toRefs } from 'vue'
 
 export default defineComponent({
+    emits: ['scroll'],
     setup(_, context) {
         const scrollContainerRef = ref(null)
         const scrollWrapper = computed(() => {
@@ -66,7 +68,7 @@ export default defineComponent({
         onMounted(() => {
             scrollWrapper.value.addEventListener('scroll', emitScroll, true)
         })
-        onBeforeMount(() => {
+        onBeforeUnmount(() => {
             scrollWrapper.value.removeEventListener('scroll', emitScroll)
         })
         return {

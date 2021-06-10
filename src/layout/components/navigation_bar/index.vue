@@ -2,7 +2,7 @@
  * @Description: 顶部导航
  * @Author: yangzai
  * @Date: 2021-05-18 17:46:26
- * @LastEditTime: 2021-06-09 15:38:36
+ * @LastEditTime: 2021-06-10 15:32:03
  * @LastEditors: yangzai
 -->
 <template>
@@ -82,7 +82,7 @@ export default defineComponent({
                 store.dispatch(AppActionTypes.ACTION_TOGGLE_SIDEBAR, false)
             },
             logout: () => {
-                // store.dispatch(UserActionTypes.ACTION_LOGIN_OUT)
+                // store.dispatch(UserActionTypes.ACTION_LOGIN_OUT, '')
             }
         })
         const avatar = computed(() => {

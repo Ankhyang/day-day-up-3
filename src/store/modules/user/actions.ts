@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yangzai
  * @Date: 2021-05-20 10:38:25
- * @LastEditTime: 2021-06-09 15:17:11
+ * @LastEditTime: 2021-06-10 15:08:05
  * @LastEditors: yangzai
  */
 import { ActionContext, ActionTree } from 'vuex'
@@ -61,8 +61,9 @@ export const actions: ActionTree<UserState, RootState> & Actions = {
         commit(UserMutationTypes.SET_ROLES, [])
     },
     [UserActionTypes.ACTION_LOGIN_OUT]({ commit }: AugumentedActionContext) {
-        console.log(commit)
         removeToken()
+        commit(UserMutationTypes.SET_TOKEN, '')
+        commit(UserMutationTypes.SET_ROLES, [])
     },
     async [UserActionTypes.ACTION_GET_USER_INFO]({ commit }: AugumentedActionContext) {
         // if(state.token === '') {
