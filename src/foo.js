@@ -11,3 +11,7 @@ export const foo = 'hello world';
 export function log(message) {
   console.log(message);
 }
+
+export function testWebpack() {
+  console.log('我是测试')
+}

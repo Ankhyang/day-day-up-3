@@ -26,6 +26,10 @@ module.exports = {
     devServer: {
         contentBase: path.resolve(__dirname, 'dist') // 开发服务器启动路径
     },
+    optimization: {
+        usedExports: true, // 模块内未使用的部分不进行导出
+        concatenateModules: true
+    },
     module: {
         rules: [
             {
@@ -71,14 +75,14 @@ module.exports = {
                 ] // 从右向左解析原则
             },
             {
-                test: /\.(jpe?g|png|gif)$/i,
+                test: /\.(jpe?g|png|gif|svg|webp)$/i,
                 exclude: /node_modules/,
                 include: path.resolve(__dirname, 'src'),
                 use: [
                     {
                         loader: 'url-loader',
                         options: {
-                            limit: 10*1024,
+                            limit: 10*1024, // 单位是 Byte，当文件小于 8KB 时作为 DataURL 处理
                             publicPath: '../',
                             esModule: false,
                             fallback: {
@@ -87,6 +91,28 @@ module.exports = {
                                     name: 'img/[name].[hash:8].[ext]'
                                 }
                             }
+                        }
+                    },
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            mozjpeg: { // 压缩 jpeg 的配置
+                                progressive: true,
+                                quality: 65
+                            },
+                            optipng: { // 使用 imagemin-optipng 压缩 png，enable: false 为关闭
+                                enabled: false,
+                            },
+                            pngquant: { // 使用 imagemin-pngquant 压缩 png
+                                quality: '65-90',
+                                speed: 4
+                            },
+                            gifsicle: { // 压缩 gif 的配置
+                                interlaced: false,
+                            },
+                            webp: { // 开启 webp，会把 jpg 和 png 图片压缩为 webp 格式
+                                quality: 75
+                            },
                         }
                     }
                 ]
@@ -100,7 +126,13 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             title: 'hello',
-            template: './index.html'
+            template: './index.html',
+            minify: {
+                minifyCSS: true,
+                minifyJS: true,
+                collapseInlineTagWhitespace: true,
+                collapseWhitespace: true
+            }
         }),
         // 将 css 文件单独抽离的 plugin
         new MiniCssExtractPlugin({
