@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-06-18 10:16:27
- * @LastEditTime: 2021-06-18 17:26:38
+ * @LastEditTime: 2021-06-21 11:10:35
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \day-day-up-3\webpack.config.js
@@ -11,6 +11,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
+const webpack = require('webpack')
+// const HappyPack = require('happypack')
+// const os = require('os')
+// 手动创建进程池
+// const happyThreadPool = HappyPack.ThreadPool({size: os.cpus().length})
+
 module.exports = {
     mode: 'development', // 指定构建模式
     // 指定构建入口文件
@@ -53,11 +60,15 @@ module.exports = {
                 include: path.resolve(__dirname, 'src'),
                 use: [
                     {
-                        loader: 'babel-loader',
+                        loader: 'babel-loader?cacheDirectory=true',
                         options: {
                             presets: ['@babel/preset-env']
                         }
-                    }
+                    },
+                    // {
+                    //     // 问号后面的查询参数指定了处理这类文件的HappyPack实例的名字
+                    //     loader: 'happypack/loader?id=happyBabel',
+                    // }
                 ]
             },
             {
@@ -138,6 +149,16 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: '[name].css',
             chunkFilename: '[id].css'
-        })
+        }),
+        new webpack.DllReferencePlugin({
+            context: __dirname, // 同DllPlugin的name
+            manifest: require('./static/vendor-manifest.json')
+        }),
+        // 将 dll 注入到 生成的 html 模板中
+        new AddAssetHtmlPlugin({
+            filepath: path.resolve(__dirname, './static/*.js'),
+            publicPath: './static',
+            outputPath: './static'
+        }),
     ]
 }
