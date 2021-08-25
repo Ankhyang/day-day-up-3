@@ -2,8 +2,8 @@
  * @Description: 侧边栏logo
  * @Author: yangzai
  * @Date: 2021-05-18 18:08:28
- * @LastEditTime: 2021-06-08 11:35:27
- * @LastEditors: yangzai
+ * @LastEditTime: 2021-08-25 14:21:50
+ * @LastEditors: yanghuan
 -->
 <template>
     <div class="sidebar-logo-container" 
@@ -24,7 +24,7 @@
             >
                 <img :src="Logo" class="sidebar-logo">
                 <h1 class="sidebar-title">
-                    Vue<span style="color:#57CAEB">3</span>TS项目
+                    Vue<span style="color:#57CAEB">3</span> + TS
                 </h1>
             </router-link>
         </transition>

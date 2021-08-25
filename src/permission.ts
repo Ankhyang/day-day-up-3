@@ -2,8 +2,8 @@
  * @Description: 权限
  * @Author: yangzai
  * @Date: 2021-05-17 09:57:07
- * @LastEditTime: 2021-05-31 17:48:44
- * @LastEditors: yangzai
+ * @LastEditTime: 2021-08-25 14:43:55
+ * @LastEditors: yanghuan
  */
 import NProgress from 'nprogress'
 import "nprogress/nprogress.css"
@@ -32,6 +32,7 @@ router.beforeEach(async (to: RouteLocationNormalized, _: RouteLocationNormalized
                 try{
                     await store.dispatch(UserActionTypes.ACTION_GET_USER_INFO, undefined)
                     const roles = store.state.user.roles || ['admin', 'editor']
+                    // 根据角色获取对应权限
                     store.dispatch(PermissionActionType.ACTION_SET_ROUTES, roles)
                     store.state.permission.dynamicRoutes.forEach(route => {
                         router.addRoute(route)

@@ -2,8 +2,8 @@
  * @Description: 路由配置
  * @Author: yangzai
  * @Date: 2021-05-18 09:50:49
- * @LastEditTime: 2021-06-07 17:41:27
- * @LastEditors: yangzai
+ * @LastEditTime: 2021-08-25 14:48:02
+ * @LastEditors: yanghuan
  */
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import Layout from '@/layout/index.vue'
@@ -19,6 +19,7 @@ constantFiles.keys().forEach(key => {
 // 需要动态判断权限并通过 addRoutes 动态添加的页面
 const asyncFiles = require.context('./permissionModules', true, /\.ts$/)
 let permissionModules: Array<RouteRecordRaw> = []
+
 asyncFiles.keys().forEach(key => {
     if(key === './index.ts') return
     permissionModules = permissionModules.concat(asyncFiles(key).default)
@@ -56,6 +57,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
     ...constantModules
 ]
 
+// 暴露异步路由，根据用户角色权限过滤
 export const asyncRoutes: Array<RouteRecordRaw> = [
     ...permissionModules
 ]
