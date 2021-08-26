@@ -2,8 +2,8 @@
  * @Description: 
  * @Author: yangzai
  * @Date: 2021-05-20 10:38:25
- * @LastEditTime: 2021-06-10 15:08:05
- * @LastEditors: yangzai
+ * @LastEditTime: 2021-08-26 17:21:13
+ * @LastEditors: yanghuan
  */
 import { ActionContext, ActionTree } from 'vuex'
 import { UserActionTypes } from './action-type'
@@ -14,10 +14,12 @@ import { userInfoRequest } from '@/apis/user'
 import { RootState, useStore } from '@/store'
 import { UserMutationTypes } from './mutation-type'
 
-import { removeToken } from '@/utils/cookies'
+import { removeToken, setToken } from '@/utils/cookies'
+import { PermissionActionType } from '../permission/action-type'
+import { RouteRecordRaw } from 'vue-router'
+import router from '@/router'
 
-
-const userInfo = {
+let userInfo = {
     token: '090293029302930293',
     name: 'Ankh',
     avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
@@ -46,7 +48,8 @@ export interface Actions {
         { commit }: AugumentedActionContext
     ): void
     [UserActionTypes.ACTION_CHANGE_ROLES](
-        { commit }: AugumentedActionContext
+        { commit }: AugumentedActionContext,
+        role: string
     ): void
     [UserActionTypes.ACTION_LOGIN_OUT](
         { commit }: AugumentedActionContext
@@ -82,7 +85,19 @@ export const actions: ActionTree<UserState, RootState> & Actions = {
             // }
         // })
     },
-    [UserActionTypes.ACTION_CHANGE_ROLES]({ commit }: AugumentedActionContext) {
-        
+    async [UserActionTypes.ACTION_CHANGE_ROLES]({ commit }: AugumentedActionContext, role: string) {
+        const token = role + '-token'
+        const store = useStore()
+        let c = new Array(1).fill(role);
+        userInfo.roles = c
+        commit(UserMutationTypes.SET_TOKEN, token)
+        commit(UserMutationTypes.SET_ROLES, c)
+        setToken(token)
+        await store.dispatch(UserActionTypes.ACTION_GET_USER_INFO, undefined)
+        store.dispatch(PermissionActionType.ACTION_SET_ROUTES, c)
+        store.state.permission.dynamicRoutes.forEach((item: RouteRecordRaw) => {
+            router.addRoute(item)
+        })
+
     }
 }

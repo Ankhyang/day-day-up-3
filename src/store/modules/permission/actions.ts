@@ -2,8 +2,8 @@
  * @Description: 
  * @Author: yangzai
  * @Date: 2021-05-25 14:37:00
- * @LastEditTime: 2021-06-10 11:21:46
- * @LastEditors: yangzai
+ * @LastEditTime: 2021-08-26 17:20:12
+ * @LastEditors: yanghuan
  */
 import { ActionContext, ActionTree } from 'vuex'
 import { RootState } from '@/store'
@@ -23,9 +23,9 @@ type AugmentedActionContext = {
 
 // 判断当前路由是否有权限
 const hasPermission = (roles: string[], route: RouteRecordRaw) => {
-    if(route.meta && route.meta.roles) {
+    if(route?.meta?.roles) {
         return roles.some(role => {
-            if(route.meta?.roles !== undefined) {
+            if(route?.meta?.roles !== undefined) {
                 return (route.meta.roles as string[]).includes(role)
             }
         })

@@ -2,8 +2,8 @@
  * @Description: 
  * @Author: yangzai
  * @Date: 2021-05-20 10:38:12
- * @LastEditTime: 2021-05-20 11:02:03
- * @LastEditors: yangzai
+ * @LastEditTime: 2021-08-26 16:55:52
+ * @LastEditors: yanghuan
  */
 import { MutationTree } from 'vuex'
 import { UserState } from './state'

@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: yangzai
  * @Date: 2021-06-08 10:23:50
- * @LastEditTime: 2021-08-25 15:53:46
+ * @LastEditTime: 2021-08-26 14:35:32
  * @LastEditors: yanghuan
  */
 import 'element-plus/lib/theme-chalk/index.css'
@@ -18,7 +18,9 @@ import {
     ElDropdownMenu,
     ElDropdownItem,
     ElRow,
-    ElCol
+    ElCol,
+    ElRadioGroup,
+    ElRadioButton
 } from 'element-plus'
 
 export default function loadComponent(app: any) {
@@ -34,4 +36,6 @@ export default function loadComponent(app: any) {
     app.use(ElDropdownItem)
     app.use(ElRow)
     app.use(ElCol)
+    app.use(ElRadioGroup)
+    app.use(ElRadioButton)
 }

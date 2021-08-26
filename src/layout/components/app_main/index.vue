@@ -2,29 +2,31 @@
  * @Description: 
  * @Author: yangzai
  * @Date: 2021-05-18 17:47:07
- * @LastEditTime: 2021-05-25 10:34:43
- * @LastEditors: yangzai
+ * @LastEditTime: 2021-08-26 16:16:21
+ * @LastEditors: yanghuan
 -->
 <template>
     <section class="app-main">
-        <transition name="fade-transform" mode="out-in">
-            <keep-alive :include="cachedViews">
-                <router-view :key="key"></router-view>
-            </keep-alive>
-        </transition>
+        <router-view v-slot="{ Component }" :key="key">
+            <transition name="fade-transform" mode="out-in">
+                <keep-alive :include="cachedViews">
+                    <component :is="Component"/>
+                </keep-alive>
+            </transition>
+        </router-view>
     </section>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { useStore } from '@/store'
 import { useRoute } from 'vue-router'
 export default defineComponent({
     setup() {
         const store = useStore()
         const route = useRoute()
-        const cachedViews = () => {
+        const cachedViews = computed(() => {
             return store.state.tagViews.cachedViews
-        }
+        })
         const key = () => {
             return route.path
         }

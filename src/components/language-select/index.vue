@@ -2,8 +2,8 @@
  * @Description: 
  * @Author: yangzai
  * @Date: 2021-06-09 14:28:20
- * @LastEditTime: 2021-06-09 14:54:52
- * @LastEditors: yangzai
+ * @LastEditTime: 2021-08-26 16:14:21
+ * @LastEditors: yanghuan
 -->
 <template>
     <div>
@@ -38,6 +38,12 @@ type Language = {
 }
 
 export default defineComponent({
+    props: {
+        isWhite: {
+            type: Boolean,
+            default: false
+        }
+    },
     setup() {
         const store = useStore()
         const { locale } = useI18n()

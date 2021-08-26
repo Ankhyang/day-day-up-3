@@ -2,8 +2,8 @@
  * @Description: 左侧菜单导航
  * @Author: yangzai
  * @Date: 2021-05-18 17:46:03
- * @LastEditTime: 2021-06-08 15:51:21
- * @LastEditors: yangzai
+ * @LastEditTime: 2021-08-26 16:13:19
+ * @LastEditors: yanghuan
 -->
 <template>
     <div 
@@ -26,6 +26,7 @@
                     :key="route.path"
                     :item="route"
                     :base-path="route.path"
+                    :is-first-level="false"
                     :is-collapse="isCollapse"
                 />
             </el-menu>

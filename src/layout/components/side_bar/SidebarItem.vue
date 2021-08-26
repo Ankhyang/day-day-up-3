@@ -2,13 +2,13 @@
  * @Description: 
  * @Author: yangzai
  * @Date: 2021-05-18 18:08:39
- * @LastEditTime: 2021-06-08 15:50:53
- * @LastEditors: yangzai
+ * @LastEditTime: 2021-08-26 17:15:55
+ * @LastEditors: yanghuan
 -->
 <template>
-    <div v-if="!item.meta || !item.meta.path" :class="[isCollapse ? 'simple-mode':'full-mode', {'first-level': isFirstLevel}]">
+    <div v-if="!item.meta || !item.meta.hidden" :class="[isCollapse ? 'simple-mode':'full-mode', {'first-level': isFirstLevel}]">
         <!-- 无子菜单 -->
-        <template v-if="singleChild && !singleChild.children">
+        <template v-if="singleChild && !singleChild.children && !alwaysShowRootMenu">
             <SidebarItemLink 
                 v-if="singleChild.meta" 
                 :to="resolvePath(singleChild.path)"
@@ -74,7 +74,7 @@ export default defineComponent({
             required: true
         },
         isCollapse: {
-            type: Boolean,
+            type: Boolean,  
             required: false
         },
         basePath: {
@@ -92,11 +92,11 @@ export default defineComponent({
     setup(props) {
         const { t } = useI18n()
         // 总是展示根菜单
-        const alwaysShowRootMenu = computed(() => (props.item.meta && props.item.meta.alwaysShow))
+        const alwaysShowRootMenu = computed(() => props?.item?.meta?.alwaysShow)
         // 需要展示的菜单个数
         const showChildNumber = computed(() => {
             if(props.item.children) {
-                const arr = props.item.children.filter(k => !(k.meta && k.meta.hidden))
+                const arr = props.item.children.filter(k => !(k?.meta?.hidden))
                 return arr.length
             }
             return 0

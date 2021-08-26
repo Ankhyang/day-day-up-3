@@ -4,7 +4,7 @@
  * @Author: yanghuan
  * @Date: 2021-08-25 16:55:34
  * @LastEditors: yanghuan
- * @LastEditTime: 2021-08-25 17:31:45
+ * @LastEditTime: 2021-08-26 17:07:46
  */
 import { RouteRecordRaw } from 'vue-router'
 import Layout from '@/layout/index.vue'
@@ -12,17 +12,18 @@ import Layout from '@/layout/index.vue'
 const permissionRouter: Array<RouteRecordRaw> = [
     {
         path: '/permission',
-        componnet: Layout,
-        redirect: '/permission/directive',
+        component: Layout,
+        redirect: '/permission/page',
         meta: {
             title: 'permission',
             icon: '#iconquanxian',
             roles: ['admin', 'editor'],
+            alwaysShow: true
         },
         children: [
             {   
                 path: 'page',
-                component: () => import(/*webpackChunkName: "permission-page" */ '@/views/permission/page.vue'),
+                component: () => import(/*webpackChunkName: "permission-page" */ '@/views/permission/Page.vue'),
                 name: 'PagePermission',
                 meta: {
                     title: 'pagePermission',
@@ -31,7 +32,7 @@ const permissionRouter: Array<RouteRecordRaw> = [
             },
             {
                 path: 'directive',
-                component: () => import(/*webpackChunkName: "permission-directive" */ '@/views/permission/directive.vue'),
+                component: () => import(/*webpackChunkName: "permission-directive" */ '@/views/permission/Directive.vue'),
                 name: 'DirectivePermission',
                 meta: {
                     title: 'directivePermission'
@@ -39,7 +40,7 @@ const permissionRouter: Array<RouteRecordRaw> = [
             },
             {
                 path: 'role',
-                component: () => import(/*webpackChunkName: "permission-role" */ '@/views/permission/role.vue'),
+                component: () => import(/*webpackChunkName: "permission-role" */ '@/views/permission/Role.vue'),
                 name: 'RolePermission',
                 meta: {
                     title: 'rolePermission',
