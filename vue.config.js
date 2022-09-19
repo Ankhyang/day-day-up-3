@@ -32,7 +32,7 @@ module.exports = {
     lintOnSave, 
     devServer: {
         // 在 server 启动后打开浏览器。默认禁用
-        open: false,
+        open: true,
         hot: true,
         host: '127.0.0.1',
         port: devPort,

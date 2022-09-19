@@ -5,11 +5,11 @@
  * @LastEditTime: 2021-08-26 14:35:32
  * @LastEditors: yanghuan
  */
-import 'element-plus/lib/theme-chalk/index.css'
+import 'element-plus/dist/index.css';
 import {
     ElScrollbar,
     ElMenu,
-    ElSubmenu,
+    ElSubMenu,
     ElMenuItem,
     ElBreadcrumb,
     ElBreadcrumbItem,
@@ -26,7 +26,7 @@ import {
 export default function loadComponent(app: any) {
     app.use(ElScrollbar)
     app.use(ElMenu)
-    app.use(ElSubmenu)
+    app.use(ElSubMenu)
     app.use(ElMenuItem)
     app.use(ElBreadcrumb)
     app.use(ElBreadcrumbItem)

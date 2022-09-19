@@ -29,14 +29,14 @@ const vueDefaultConfig  = {
     // 放置生成的静态资源的目录
     assetsDir: 'static',
     // 代码保存时进行eslint检测
-    lintOnSave: true,
+    lintOnSave: false,
     // 默认情况下 babel-loader 会忽略所有 node_modules 中的文件。如果你想要通过 Babel 显式转译一个依赖，可以在这个选项中列出来
     transpileDependencies: ['vue-echarts', 'resize-detector'],
     // 当使用 title 选项时，template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
     title: 'vue3-ts-composition-admin-template',
     titleSeparator: '-',
     titleReverse: false,
-    devePort: '8082',
+    devePort: '8085',
     abbreviation: 'vt2at',
     providePlugin: {},
     build7z: false,
