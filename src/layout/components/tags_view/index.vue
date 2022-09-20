@@ -36,11 +36,10 @@ import { useStore } from '@/store'
 import { TagView } from '@/store/modules/tagsview/state'
 import { TagsActionTypes } from '@/store/modules/tagsview/action-type'
 
-import ScrollPane from './scroll-pane.vue'
+import ScrollPane from './ScrollPane.vue'
 import { RouteRecordRaw, useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import path from 'path'
-import { TagsView } from '..'
 
 export default defineComponent({
     components: {

@@ -34,6 +34,7 @@ router.beforeEach(async (to: RouteLocationNormalized, _: RouteLocationNormalized
                     const roles = store.state.user.roles || ['admin', 'editor']
                     // 根据角色获取对应权限
                     store.dispatch(PermissionActionType.ACTION_SET_ROUTES, roles)
+                    console.log(store.state.permission)
                     store.state.permission.dynamicRoutes.forEach(route => {
                         router.addRoute(route)
                     })

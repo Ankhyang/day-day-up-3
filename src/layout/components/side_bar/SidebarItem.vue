@@ -31,7 +31,7 @@
         </template>
 
         <!-- 有子菜单 -->
-        <el-submenu v-else :index="resolvePath(item.path)">
+        <el-sub-menu v-else :index="resolvePath(item.path)">
             <template #title>
                 <svg
                     v-if="item.meta && item.meta.icon"
@@ -56,7 +56,7 @@
                     class="nest-menu"
                 />
             </template>
-        </el-submenu>
+        </el-sub-menu>
     </div>
 </template>
 <script lang="ts">

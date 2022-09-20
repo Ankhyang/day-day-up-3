@@ -40,7 +40,6 @@ export const constantRoutes: Array<RouteRecordRaw> = [
     {
         path: '/',
         component: Layout,
-        redirect: '/dashboard',
         children: [
             {
                 path: 'dashboard',
@@ -51,7 +50,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
                     icon: '#icondashboard',
                     affix: true
                 }
-            }
+            },
         ]
     },
     ...constantModules

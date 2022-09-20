@@ -61,7 +61,8 @@ module.exports = {
                 alias: {
                     '@': resolve('src'),
                     '*': resolve(''),
-                    'Assets': resolve('src/assets')
+                    'Assets': resolve('src/assets'),
+                    'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js', // 解决控制台警告信息
                 }
             },
             module: {
